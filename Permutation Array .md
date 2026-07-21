@@ -1,27 +1,72 @@
 # Ex9 Finding the Longest Length of Nested Set in a Permutation Array
-## DATE:
+## DATE: 21-07-2026
 ## AIM:
 To write a program that finds the length of the longest set s[k] defined as s[k] = { nums[k], nums[nums[k]], nums[nums[nums[k]]], … },where the iteration stops before a duplicate element occurs.
 
 The task is to return the maximum size among all such sets.
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+
+    1.Start the program.
+    2.Input: An array nums representing a permutation of the numbers from 0 to n - 1.
+    3.Initialize a boolean array visited[] of size n to keep track of visited elements.
+    4.Initialize a variable maxLength = 0 to store the maximum length of any nested set.
+    5.For each index i in the array:
+          i. If nums[i] is not visited:
+          ii. Start from index i, and keep following nums[k] until a visited element is encountered.
+          iii. Count the number of steps taken.
+          iv. Update maxLength if the current count is greater than the existing value.
+     6.Output the value of maxLength. End the program.
 
 ## Program:
-```
-/*
-Program to find the Longest Length of Nested Set in a Permutation Array
-Developed by: 
-RegisterNumber:  
-*/
-```
+
+    /*
+    Program to find the Longest Length of Nested Set in a Permutation Array
+    Developed by: VESHWANTH .
+    RegisterNumber: 212224230300 
+    */
+    
+    import java.util.*;
+    public class ArrayNestingMain {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            String input = sc.nextLine().trim();
+            input = input.replace("nums =", "").replace("[", "").replace("]", "").trim();
+            String[] parts = input.split(",");
+            int[] nums = new int[parts.length];
+    
+            for (int i = 0; i < parts.length; i++) {
+                nums[i] = Integer.parseInt(parts[i].trim());
+            }
+            Solution sol = new Solution();
+            int result = sol.arrayNesting(nums);
+            System.out.println(result);
+            sc.close();
+        }
+    }
+    class Solution {
+        public int arrayNesting(int[] nums) {
+            int maxlen = 0;
+            boolean[] visited = new boolean[nums.length];
+            for (int i = 0; i < nums.length; i++) {
+                if (!visited[i]) {
+                    int count = 0;
+                    int curr = i;
+                    while (!visited[curr]) {
+                        visited[curr] = true;
+                        curr = nums[curr];
+                        count++;
+                    }
+                    maxlen = Math.max(maxlen, count);
+                }
+            }
+            return maxlen;
+    
+        }
+    }
 
 ## Output:
 
+<img width="536" height="102" alt="image" src="https://github.com/user-attachments/assets/cfaa2c27-f807-4246-8b8b-a2162beb264d" />
 
 
 ## Result:
